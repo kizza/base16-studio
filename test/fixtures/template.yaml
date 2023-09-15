@@ -1,0 +1,19 @@
+# Template scheme for the Base16 Builder (https://github.com/chriskempson/base16-builder)
+scheme: "Scheme name (light - variant)"
+author: "Tony O'Grady. Username (http://github.com/asdf)"
+base00: "000000" #  ----
+base01: "111111" #  ---
+base02: "222222" #  --
+base03: "333333" #  -
+base04: "444444" #  +
+base05: "555555" #  ++
+base06: "666666" #  +++
+base07: "777777" #  ++++
+base08: "888888" #	red
+base09: "999999" #	orange
+base0A: "AAAAAA" #	yellow
+base0B: "BBBBBB" #	green
+base0C: "CCCCCC" #	aqua
+base0D: "DDDDDD" #	blue
+base0E: "EEEEEE" #	purple
+base0F: "FFFFFF" #	brown

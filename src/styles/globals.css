@@ -1,5 +1,6 @@
 html,
 body {
+  background: #efefef;
   padding: 0;
   margin: 0;
   font-family:
@@ -17,9 +18,21 @@ body {
     sans-serif;
 }
 
+html, body, #__next {
+  height: 100%;
+}
+
 a {
   color: inherit;
   text-decoration: none;
+}
+
+.react-colorful {
+  width: 100% !important;
+  height: 100% !important;
+}
+.react-colorful__saturation {
+  height: 100%;
 }
 
 * {
