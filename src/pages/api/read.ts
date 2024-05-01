@@ -27,7 +27,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 export const resolveOrWrite = (theme: Theme) => (scheme: Scheme) =>
   hasExt('sh')(theme.path)
     ? {path: theme.path, scheme} // Already sourceable
-    :  writeTheme({name: 'Scratch (from parse)', slug: 'new', scheme: scheme})
+    :  writeTheme({name: `${scheme.name} (from yaml)`, slug: 'new', scheme: scheme})
         .then(_ => ({path: themePath('new.sh'), scheme}))
 
 export default maybeErrored(handler)
