@@ -18,16 +18,16 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   const theme = payload.theme
 
   return readThemeFile(theme.path)
-    .then(resolveOrWrite(theme))
+    .then(resolveOrCreate(theme))
     .then(({scheme}) => {
       res.status(200).json({ scheme });
     })
 }
 
-export const resolveOrWrite = (theme: Theme) => (scheme: Scheme) =>
+export const resolveOrCreate = (theme: Theme) => (scheme: Scheme) =>
   hasExt('sh')(theme.path)
     ? {path: theme.path, scheme} // Already sourceable
-    :  writeTheme({name: `${scheme.name} (from yaml)`, slug: 'new', scheme: scheme})
+    : writeTheme({name: `${scheme.name} (from yaml)`, slug: 'new', scheme: scheme})
         .then(_ => ({path: themePath('new.sh'), scheme}))
 
 export default maybeErrored(handler)

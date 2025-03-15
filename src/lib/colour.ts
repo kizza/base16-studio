@@ -24,7 +24,7 @@ export const CONTEXT: Record<Base16, {label: string, description: string}> = {
   base06: {label: "Lighter foreground", description: "Editor text"},
   base02: {label: "Selection", description: "Selection and tab bar"},
   base03: {label: "Bright black", description: "Line numbers"},
-  base04: {label: "Darker forground", description: "Darker accents (current line number, file type?)"},
+  base04: {label: "Darker forground", description: "Darker accents (comments, file type)"},
   base05: {label: "Foreground", description: "Primary text"},
   // Accents
   base07: {label: "Bright white", description: ""},

@@ -17,7 +17,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   const {name, scheme} = JSON.parse(req.body) as Payload
   const slug = sluggify(name)
   return writeTheme({name: name, slug: slug, scheme: scheme})
-    .then(_ => sourceThemeFile(`${slug}.sh`))
+    .then(_ => sourceThemeFile(slug))
     .then(_ => res.status(200).send({}))
 }
 

@@ -5,7 +5,7 @@ import { asHexWithHash, isBase, splatPalette } from './colour';
 import { getExt, hasExt, pathToSlug, readdirSync } from './file';
 import { filterKeys, keys, mapValues } from './functional';
 import { themeParser } from './parse';
-import { source } from './shell';
+import { execute, source, symlink } from './shell';
 
 const { readFile, writeFile } = fs.promises
 
@@ -14,6 +14,8 @@ export const sluggify = (text: string) => text.trim().replace(/[^\w\s-]/g, '').r
 export const themePath = (file: string) => path.join(process.cwd(), 'themes', file);
 
 export const templatePath = (file: string) => path.join(process.cwd(), 'src', 'templates', file);
+
+export const tintedShellPath = (...parts: string[]) => path.join(process.env.BASE16_SHELL_PATH, ...parts);
 
 const asTheme = (dir: string) => (filename: string): Theme => ({
   label: filename.replace(/\.[^.]+$/, ''),
@@ -71,7 +73,14 @@ export const writeTheme = ({name, slug, scheme}: NewTheme) => {
     writeThemeFile('base16-shell.mustache', themeProps, `${slug}.sh`),
     writeThemeFile('base16-vim.mustache', themeProps, `vim/${slug}.vim`),
     writeThemeFile('base16-nvim.mustache', themePropsWithHash, `vim/${slug}.nvim`),
-  ])
+  ]).then(() => {
+    // Symlink to tinted-shell
+    const command = symlink(
+      themePath(`${slug}.sh`),
+      tintedShellPath('scripts', `base16-${slug}.sh`),
+    );
+    execute(command);
+  });
 }
 
 export const readThemeFile = (path: string) =>
@@ -85,4 +94,4 @@ export const readThemeFile = (path: string) =>
     }
   });
 
-export const sourceThemeFile = (file: string) => source(themePath(file))
+export const sourceThemeFile = (slug: string) => source(slug, themePath(`${slug}.sh`))

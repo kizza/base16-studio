@@ -3,7 +3,8 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev -p 8080",
-    "start": "next start -p 8080",
+    "start": "next dev -p 8080",
+    "next:start": "next start -p 8080",
     "test": "jest"
   },
   "dependencies": {

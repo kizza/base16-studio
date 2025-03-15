@@ -9,7 +9,7 @@ I love the amazing themes created by the community and use a variety of their pl
 I must confess however, I sometimes feel the need to just _tweak one of two_ subtle shades depending on my setup - I know, I have a problem - but I find this is a great solution (and it's fun!).
 
 - **Tweak and save your favourite themes** - or just play and see what you come up with
-- **Search and narrow your themes** easily (even supports regex)
+- **Search and narrow your themes** easily (supports regex also)
 - **Curate your themes** by _favouriting_ or _ignoring_ (there's a lot these days!)
 - **Edit with granularity** - click on a color name to _zoom in_ and edit with precision
 - **Toggle "show changes"** to go back-and-forth between your intended changes and the original

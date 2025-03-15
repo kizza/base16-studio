@@ -3,7 +3,7 @@ import { source } from '@/lib/shell';
 import { readThemeFile } from '@/lib/theme';
 import { Theme } from '@/types';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { resolveOrWrite } from './read';
+import { resolveOrCreate } from './read';
 
 interface Payload {
   theme: Theme
@@ -19,9 +19,9 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   const theme = payload.theme
 
   return readThemeFile(theme.path)
-    .then(resolveOrWrite(theme))
+    .then(resolveOrCreate(theme))
     .then(({path, scheme}) => {
-        source(path)
+        source(theme.slug, path);
         res.status(200).json({ scheme: scheme });
       })
 }

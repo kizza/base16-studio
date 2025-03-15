@@ -14,9 +14,10 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   }
 
   const payload = JSON.parse(req.body) as Payload
+  const slug = 'new';
 
-  return writeTheme({name: 'Scratch', slug: 'new', scheme: payload.scheme})
-    .then(_ => sourceThemeFile('new.sh'))
+  return writeTheme({name: 'Scratch', slug: slug, scheme: payload.scheme})
+    .then(_ => sourceThemeFile(slug))
     .then(_ => res.status(200).send({}))
 }
 
