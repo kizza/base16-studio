@@ -62,9 +62,19 @@ export default function Form() {
     updateThemeListMeta(event.scheme.slug, 'favourite', event.favourite)
   }
 
+  const lookupPreviousTheme = (scheme: Scheme) => {
+    const notIgnoredThemes = themeList.base16schemes.filter(each => each.ignored == false)
+    const index = notIgnoredThemes.findIndex(each => each.slug == scheme.slug)
+    return notIgnoredThemes[index - 1] || scheme
+  }
+
   const setIgnored = (event: IgnoredChangeEvent) => {
     api.setIgnored(event);
     updateThemeListMeta(event.scheme.slug, 'ignored', event.ignored)
+    if (event.ignored == true) { // Don't jump to the ignored list (stay in place)
+      const nextSelected = lookupPreviousTheme(event.scheme)
+      setSelectedTheme(nextSelected);
+    }
   }
 
   const updateThemeListMeta = (slug: string, attribute: keyof Theme, checked: boolean) => {
