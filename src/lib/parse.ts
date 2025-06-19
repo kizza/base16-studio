@@ -17,14 +17,15 @@ export const parseFromLua = (buffer: string): Scheme | false => {
 export const parseFromYaml = (buffer: string): Scheme | false => {
   const parsed = buffer
     .split('\n')
-    .filter(line => /^\w+:/.test(line))
+    .map(line => line.trim()) // Remove left padding for colours
+    .filter(line => /^\w+:/.test(line)) // Only populated lines
+    .filter(line => !/^palette+:/.test(line)) // Remove palette key (as orphaned parent of colours)
     .map(line => line.split(':'))
     .map(([head, ...tail]) => [head, tail.join(':')])
     .map(([key, val]) => [key, val.split('"')[1]])
     .reduce((acc, [key, val]) => ({...acc, [key]: val}), {}) as Palette & {scheme: string, author: string}
 
   return {
-    name: parsed.scheme,
     ...filterKeys(parsed, key => key !== 'scheme')
   } as Scheme
 }

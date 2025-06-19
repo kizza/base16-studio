@@ -11,8 +11,8 @@ function handler(req: NextApiRequest, res: NextApiResponse) {
     return
   }
 
-  const repo = 'https://github.com/base16-project/base16-schemes'
-  const dest = path.join(process.cwd(), 'thirdparty', 'base16-schemes');
+  const repo = 'https://github.com/tinted-theming/schemes'
+  const dest = path.join(process.cwd(), 'thirdparty', 'schemes');
   if (fs.existsSync(path.join(dest, '.git'))) {
     execute(`git --git-dir=${dest}/.git --work-tree=${dest} pull`)
   } else {

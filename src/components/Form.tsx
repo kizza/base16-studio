@@ -141,7 +141,7 @@ export default function Form() {
   const confirmDownloadThemes = () => {
     getInput({
       title: 'Download base16-schemes from github?',
-      description: 'This will clone the \'base16-schemes\' repository from the tinted-theming github repository.',
+      description: 'This will clone the \'schemes\' repository from the tinted-theming github repository.',
       input: 'boolean',
       action: "Download",
     }).then(refreshThemes)

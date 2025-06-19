@@ -32,7 +32,7 @@ export const localThemes = () =>  {
 }
 
 export const base16schemes = () => {
-  const dir = path.join(process.cwd(), 'thirdparty', 'base16-schemes');
+  const dir = path.join(process.cwd(), 'thirdparty', 'schemes', 'base16');
   return readdirSync(dir)
     .filter(hasExt('yaml'))
     .map(asTheme(dir))
