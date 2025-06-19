@@ -115,7 +115,7 @@ function Palette(props: PropsType) {
         </div>
       </div>
 
-  return <div className='flex flex-col'>
+  return <div className='flex flex-col h-full'>
     <Attribution />
     <div className='grid grid-flow-col justify-stretch h-10'>
       {order.map(key => <div key={`block-${key}`} style={{ background: `#${scheme[key]}`}}>&nbsp;</div>)}
