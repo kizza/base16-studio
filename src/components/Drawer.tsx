@@ -13,7 +13,7 @@ import { Box, CircularProgress, Divider, IconButton, InputAdornment, List, ListI
 import { useState } from 'react';
 import ListSubheaderButton from './ListSubheaderButton';
 
-export const WIDTH = 320
+export const WIDTH = 340
 
 export interface PropsType {
   onSelect: (theme: Theme) => void
