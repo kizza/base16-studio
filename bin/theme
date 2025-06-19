@@ -1,0 +1,34 @@
+#!/usr/bin/env zsh
+
+# Setup environment
+BIN_DIR=$(dirname "$(realpath "$0")")
+BASE_DIR=$(dirname "$BIN_DIR")
+source "$BASE_DIR/.env.local"
+
+# Get input
+THEME_NAME="$1"
+
+# Provide available themes if empty
+if [[ -z "$THEME_NAME" ]]; then
+  THEME_NAME=$(find "$BASE_DIR/themes/" -name "*.sh" | xargs basename -s .sh | xargs echo | xargs -n1 | fzf --height "~10%" --prompt "Choose theme ")
+fi
+
+# Check if stil lempty
+if [[ -z "$THEME_NAME" ]]; then
+  exit 1
+fi
+
+# Check if valid
+THEME_PATH="$BASE_DIR/themes/$THEME_NAME.sh"
+if [[ ! -f "$THEME_PATH" ]]; then
+  echo "Error: Theme '$THEME_NAME' not found at $THEME_PATH"
+  exit 1
+fi
+
+# Symlink theme int o
+echo "$THEME_NAME" > "$BASE16_SHELL_THEME_NAME_PATH"
+
+# Symlink path into special files
+ln -fs "$THEME_PATH" "$BASE16_SHELL_COLORSCHEME_PATH"
+ln -fs "$THEME_PATH" "$BASE16_SHELL_PATH/scripts/base16-$THEME_NAME.sh"
+source "$THEME_PATH"
