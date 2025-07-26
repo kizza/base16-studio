@@ -10,8 +10,12 @@ if [ -s "$BASE16_SHELL_THEME_NAME_PATH" ]; then
   read THEME_NAME < "$BASE16_SHELL_THEME_NAME_PATH"
 fi
 
-echo "Symlinking $THEME_NAME to $BASE16_SHELL_COLORSCHEME_PATH"
-ln -fs "$BASE_DIR/themes/$THEME_NAME.sh" "$BASE16_SHELL_COLORSCHEME_PATH"
-ln -fs "$BASE_DIR/themes/$THEME_NAME.sh" "$BASE16_SHELL_PATH/scripts/base16-$THEME_NAME.sh"
-ls -l "$BASE16_SHELL_COLORSCHEME_PATH"
-ls -l "$BASE16_SHELL_PATH/scripts" | grep "$THEME_NAME"
+if [ -f "$BASE_DIR/themes/$THEME_NAME.sh" ]; then
+  # echo "Symlinking $THEME_NAME to $BASE16_SHELL_COLORSCHEME_PATH"
+  ln -fs "$BASE_DIR/themes/$THEME_NAME.sh" "$BASE16_SHELL_COLORSCHEME_PATH"
+  ln -fs "$BASE_DIR/themes/$THEME_NAME.sh" "$BASE16_SHELL_PATH/scripts/base16-$THEME_NAME.sh"
+  # ls -l "$BASE16_SHELL_COLORSCHEME_PATH"
+  # ls -l "$BASE16_SHELL_PATH/scripts" | grep "$THEME_NAME"
+else
+  echo "Theme file not found"
+fi
